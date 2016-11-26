@@ -14,9 +14,9 @@ const App = () => { // App is a class, not an instance
       <SearchBar />
     </div>
   );
-}
+};
 
 // Take this component's generated HTML and put it
 // on the page (in the DOM).
 
-ReactDOM.render(<App />, document.querySelector('.container')) // instantiate components before rendering them to the DOM ( i.e. <App /> )
+ReactDOM.render(<App />, document.querySelector('.container')); // instantiate components before rendering them to the DOM ( i.e. <App /> )
