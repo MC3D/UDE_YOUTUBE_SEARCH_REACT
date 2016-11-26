@@ -2,6 +2,7 @@ import React, { Component } from 'react'; // used to create a manage components
 import ReactDOM from 'react-dom'; // used to interact with the DOM
 import YouTubeSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
+import VideoList from './components/video_list';
 const API_KEY = 'AIzaSyBMwwCV_8u6YefEUZoVyc__gSJwtWUYVDM';
 
 // Create a new component. This component should produce
@@ -23,6 +24,7 @@ class App extends Component { // App is a class, not an instance
     return (
       <div>
         <SearchBar />
+        <VideoList videos={this.state.videos} />
       </div>
     );
   }
