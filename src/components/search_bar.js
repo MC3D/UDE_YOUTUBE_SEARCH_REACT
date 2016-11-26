@@ -5,14 +5,17 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search_term: ''
+      term: ''
     };
   }
 
   render() {
+    // input is a controlled component (value is controlled by state)
     return (
       <div>
-        <input onChange={event => this.setState({ search_term: event.target.value })}/>
+        <input
+          value={this.state.term}
+          onChange={event => this.setState({ term: event.target.value })}/>
       </div>
     );
 
