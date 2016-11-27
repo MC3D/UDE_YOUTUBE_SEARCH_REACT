@@ -9,13 +9,18 @@ class SearchBar extends Component {
     };
   }
 
+  _handleInput(term) {
+    this.setState({term})
+    this.props.handleInput(term);
+  }
+
   render() {
     // input is a controlled component (value is controlled by state)
     return (
-      <div>
+      <div className='search-bar'>
         <input
           value={this.state.term}
-          onChange={event => this.setState({ term: event.target.value })}/>
+          onChange={event => this._handleInput(event.target.value)}/>
       </div>
     );
 

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'; // used to interact with the DOM
 import YouTubeSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
+import VideoDetail from './components/video_detail';
 const API_KEY = 'AIzaSyBMwwCV_8u6YefEUZoVyc__gSJwtWUYVDM';
 
 // Create a new component. This component should produce
@@ -12,19 +13,32 @@ class App extends Component { // App is a class, not an instance
     super(props);
 
     this.state = {
-      videos: []
+      videos: [],
+      selectedVideo: null
     };
 
-    YouTubeSearch({key: API_KEY, term: 'dogs'}, videos =>  {
-      this.setState({ videos });
-      // this.setState({ videos: videos});
+    this._videoSearch('dogs');
+  }
+
+  _videoSearch(term) {
+    YouTubeSearch({key: API_KEY, term: term}, videos =>  {
+      // this.setState({ videos }); // same as {videos: videos}
+      this.setState({
+        videos: videos,
+        selectedVideo: videos[0]
+      });
     });
   }
+
   render() {
     return (
       <div>
-        <SearchBar />
-        <VideoList videos={this.state.videos} />
+        <SearchBar handleInput={term => this._videoSearch(term)} />
+        <VideoDetail video={this.state.selectedVideo}/>
+        <VideoList
+          videos={this.state.videos}
+          handleSelect={selectedVideo => this.setState({selectedVideo})}
+         />
       </div>
     );
   }

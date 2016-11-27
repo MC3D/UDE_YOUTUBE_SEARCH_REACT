@@ -1,11 +1,11 @@
 import React from 'react';
 
-const VideoListItem = ({video}) => { // using {video} instead of props is the same as const video = props.video
+const VideoListItem = ({video, handleSelect}) => { // using {video} instead of props is the same as const video = props.video
   // const video = props.video;
   const imageUrl = video.snippet.thumbnails.default.url;
 
   return (
-    <li className='list-group-item'>
+    <li onClick={() => handleSelect(video)} className='list-group-item'>
       <div className='video-list media'>
         <div className='media-left'>
           <img className='media-object' src={imageUrl} />
