@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react'; // used to create a manage components
 import ReactDOM from 'react-dom'; // used to interact with the DOM
 import YouTubeSearch from 'youtube-api-search';
@@ -31,9 +32,10 @@ class App extends Component { // App is a class, not an instance
   }
 
   render() {
+    const videoSearch = _.debounce((term) => { this._videoSearch(term) }, 300);
     return (
       <div>
-        <SearchBar handleInput={term => this._videoSearch(term)} />
+        <SearchBar handleInput={videoSearch} />
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList
           videos={this.state.videos}
